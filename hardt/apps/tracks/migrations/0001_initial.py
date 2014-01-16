@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.TextField')()),
             ('artist', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tracks.Artist'])),
-            ('year', self.gf('django.db.models.fields.IntegerField')()),
+            ('year', self.gf('django.db.models.fields.IntegerField')(null=True)),
         ))
         db.send_create_signal(u'tracks', ['Album'])
 
@@ -30,7 +30,7 @@ class Migration(SchemaMigration):
             ('title', self.gf('django.db.models.fields.TextField')()),
             ('artist', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tracks.Artist'])),
             ('album', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['tracks.Album'])),
-            ('duration', self.gf('django.db.models.fields.IntegerField')()),
+            ('duration', self.gf('django.db.models.fields.IntegerField')(null=True)),
             ('path', self.gf('django.db.models.fields.TextField')()),
         ))
         db.send_create_signal(u'tracks', ['Track'])
@@ -53,7 +53,7 @@ class Migration(SchemaMigration):
             'artist': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tracks.Artist']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.TextField', [], {}),
-            'year': ('django.db.models.fields.IntegerField', [], {})
+            'year': ('django.db.models.fields.IntegerField', [], {'null': 'True'})
         },
         u'tracks.artist': {
             'Meta': {'object_name': 'Artist'},
@@ -64,7 +64,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Track'},
             'album': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tracks.Album']"}),
             'artist': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['tracks.Artist']"}),
-            'duration': ('django.db.models.fields.IntegerField', [], {}),
+            'duration': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'path': ('django.db.models.fields.TextField', [], {}),
             'title': ('django.db.models.fields.TextField', [], {})

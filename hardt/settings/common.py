@@ -103,6 +103,10 @@ INSTALLED_APPS = (
     'south',
     'hardt.apps.tracks',
     'hardt.apps.nowplaying',
+    'hardt.apps.scanner',
+    'hardt.apps.playlists',
+    'hardt.apps.queue',
+    'hardt.apps.search',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -134,3 +138,5 @@ LOGGING = {
     }
 }
 
+
+MUSIC_DIR = "/media/james/Elements/Music/"
