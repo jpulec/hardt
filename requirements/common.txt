@@ -1,3 +1,4 @@
 Django==1.6.1
 South==0.8.4
 mutagen==1.22
+mp3play==0.1.15

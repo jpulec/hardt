@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <audio controls>
-        <source src="{{ song.path }}" type="{{ song.type }}">
-    </audio>
+<form class="form-search">
+    <div class="input-append">
+        <input type="text" class="span2 search-query">
+        <button type="submit" class="btn">Search</button>
+    </div>
+</form>
 {% endblock %}

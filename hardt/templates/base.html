@@ -28,6 +28,7 @@
                 <li class="sidebar-brand"><a href="{% url "home" %}">Hardt Home</a>
                 </li>
                 <li><a href="{% url "playlists" %}">Playlists</a>
+                <li><a href="{% url "library" %}">Library</a>
                 <li><a href="{% url "queue" %}">Queue</a>
                 <li><a href="{% url "search" %}">Search</a>
                 <li><a href="{% url "system" %}">System</a>
@@ -63,7 +64,8 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
-
+    {% block script %}
+    {% endblock script %}
 
 
 </body>

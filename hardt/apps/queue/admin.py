@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from hardt.apps.queue.models import *
+
+admin.site.register(OrderedTrack)

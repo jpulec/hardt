@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table id="tracks" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for track in tracks %}
+        <tr>
+            <td>{{ track.title }}</td>
+            <td>{{ track.artist }}</td>
+            <td>{{ track.album }}</td>
+            <td>{{ track.id }}</td>
+        </tr>
+       {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
+
+{% block script %}
+<script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+<script>
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+crossDomain: false, // obviates need for sameOrigin test
+beforeSend: function(xhr, settings) {
+if (!csrfSafeMethod(settings.type)) {
+xhr.setRequestHeader("X-CSRFToken", csrftoken);
+}
+}
+});
+
+    $(document).ready(function() {
+            $('#tracks').dataTable({
+                "bScrollInfinite": true,
+                "bScrollCollapse": true,
+                "sScrollY": "200px",
+                "aoColumnDefs": [
+                    { "bSearchable": false, "aTargets": [3] },
+                ]});
+
+            $('#tracks tbody tr').on('click', function() {
+                var nTds = $('td', this);
+                $.ajax({
+                    data: { "trackId" :$(nTds[3]).text()},
+                    type: "POST",
+                    url: "{% url "queue" %}",
+                    success: function (response) {
+                        }
+                    });
+
+                });
+            });
+</script>
+{% endblock script %}
