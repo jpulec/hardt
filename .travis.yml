@@ -1,0 +1,18 @@
+language: python
+cache:
+  - apt
+  - directories:
+    - /home/travis/virtualenv/python2.7/lib/python2.7/site-packages
+python:
+  - "2.7"
+addons:
+  postgresql: 9.3
+services:
+  - redis-server
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get upgrade
+install:
+  - pip install -r requirements.txt
+script:
+  - python hardt/manage.py test
